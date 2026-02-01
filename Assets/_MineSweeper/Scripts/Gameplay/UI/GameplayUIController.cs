@@ -4,9 +4,6 @@ using UnityEngine.UI;
 public class GameplayUIController : MonoBehaviour {
     #region Fields
 
-    [SerializeField] private GameObject m_gameOverPanel;
-    [SerializeField] private Text m_gameOverText;
-
     #endregion
 
     #region Public
