@@ -27,7 +27,7 @@ public class HudPresenter : IInitializable, IDisposable, ITickable {
 
     public void Initialize() {
         if (m_hud != null && m_hud.stateOfGames != null) {
-            m_hud.stateOfGames.e_onPressedEvent += OnFacePressed;
+            m_hud.stateOfGames.e_onPressedEvent += ResetGame;
         }
 
         m_boardService.e_onFlagsChangedEvent += OnFlagsChanged;
@@ -40,7 +40,7 @@ public class HudPresenter : IInitializable, IDisposable, ITickable {
 
     public void Dispose() {
         if (m_hud != null && m_hud.stateOfGames != null) {
-            m_hud.stateOfGames.e_onPressedEvent -= OnFacePressed;
+            m_hud.stateOfGames.e_onPressedEvent -= ResetGame;
         }
 
         m_boardService.e_onFlagsChangedEvent -= OnFlagsChanged;
@@ -76,14 +76,14 @@ public class HudPresenter : IInitializable, IDisposable, ITickable {
         }
     }
 
-    #endregion
-
-    #region Private
-
-    private void OnFacePressed() {
+    public void ResetGame() {
         m_gameFlow.OnRestartPressed();
         ResetHud();
     }
+
+    #endregion
+
+    #region Private
 
     private void OnFlagsChanged(int a_flagsPlaced) {
         if (m_hud == null) {

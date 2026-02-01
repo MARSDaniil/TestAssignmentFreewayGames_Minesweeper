@@ -33,7 +33,7 @@ public class GameplayBindInstaller : MonoInstaller {
         Container.Bind<GameInputController>().AsSingle();
         Container.BindInterfacesAndSelfTo<HudPresenter>().AsSingle();
         Container.BindInterfacesAndSelfTo<GameFlowController>().AsSingle();
-
+        Container.BindInterfacesTo<GameOverPresenter>().AsSingle();
         Container.Bind<BoardCameraController>().AsSingle().WithArguments(m_mainCamera, m_boardView, m_cameraPadding);
     }
 

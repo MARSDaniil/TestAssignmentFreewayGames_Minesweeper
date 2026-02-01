@@ -7,7 +7,7 @@ public class GameOverPresenter : IInitializable, IDisposable {
     private readonly GameplayUIController m_hud;
     private readonly IBoardService m_boardService;
     private readonly ISceneLoader m_sceneLoader;
-    private readonly GameFlowController m_gameFlowController;
+    private readonly HudPresenter m_hudPresenter;
 
     #endregion
 
@@ -17,11 +17,12 @@ public class GameOverPresenter : IInitializable, IDisposable {
         GameplayUIController a_hud,
         IBoardService a_boardService,
         ISceneLoader a_sceneLoader,
-        GameFlowController a_gameFlowController) {
+        GameFlowController a_gameFlowController,
+        HudPresenter a_hudPresenter) {
         m_hud = a_hud;
         m_boardService = a_boardService;
         m_sceneLoader = a_sceneLoader;
-        m_gameFlowController = a_gameFlowController;
+        m_hudPresenter = a_hudPresenter;
     }
 
     public void Initialize() {
@@ -34,8 +35,8 @@ public class GameOverPresenter : IInitializable, IDisposable {
             }
         }
 
-        m_boardService.e_onGameLostEvent += OnWinGame;
-        m_boardService.e_onGameWinEvent += OnLoseGame;
+        m_boardService.e_onGameLostEvent += OnLoseGame;
+        m_boardService.e_onGameWinEvent += OnWinGame;
     }
 
     public void Dispose() {
@@ -44,8 +45,8 @@ public class GameOverPresenter : IInitializable, IDisposable {
             m_hud.gameOverPanel.e_onBackToMenuPressedEvent -= OnBackToMenuPressed;
         }
 
-        m_boardService.e_onGameLostEvent -= OnWinGame;
-        m_boardService.e_onGameWinEvent -= OnLoseGame;
+        m_boardService.e_onGameLostEvent -= OnLoseGame;
+        m_boardService.e_onGameWinEvent -= OnWinGame;
     }
 
     #endregion
@@ -80,6 +81,7 @@ public class GameOverPresenter : IInitializable, IDisposable {
         if (m_hud != null) {
             m_hud.gameOverPanel.Hide(false);
         }
+        m_hudPresenter.ResetGame();
     }
 
     private void OnBackToMenuPressed() {
