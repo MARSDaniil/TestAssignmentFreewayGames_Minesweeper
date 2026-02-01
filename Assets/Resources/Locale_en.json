@@ -1,0 +1,45 @@
+{
+    "LanguageCode": "EN",
+    "Data": [
+        {
+            "SID": "SID_START_NEW_GAME",
+            "LString": "NEW GAME"
+        },
+        {
+            "SID": "SID_CONTINUE",
+            "LString": "CONTINUE"
+        },
+        {
+            "SID": "SID_MINES",
+            "LString": "MINES"
+        },
+        {
+            "SID": "SID_SIZE",
+            "LString": "SIZE"
+        },
+        {
+            "SID": "SID_FLAGS_LEFT",
+            "LString": "FLAGS"
+        },
+        {
+            "SID": "SID_TIME",
+            "LString": "TIME"
+        },
+        {
+            "SID": "SID_YOU_WIN",
+            "LString": "YOU WIN!"
+        },
+        {
+            "SID": "SID_YOU_LOSE",
+            "LString": "YOU LOSE :("
+        },
+        {
+            "SID": "SID_RESTART",
+            "LString": "RESTART"
+        },
+        {
+            "SID": "SID_BACK_TO_MENU",
+            "LString": "BACK TO MENU"
+        }
+    ]
+}

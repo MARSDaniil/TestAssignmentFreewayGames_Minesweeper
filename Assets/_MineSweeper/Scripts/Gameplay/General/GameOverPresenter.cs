@@ -56,7 +56,7 @@ public class GameOverPresenter : IInitializable, IDisposable {
     private void OnWinGame() {
         OpenEndOfGame();
         if (m_hud != null) {
-            m_hud.gameOverPanel.SetResult(Constants.Locale.SID_YOU_WIN);
+            m_hud.gameOverPanel.SetResult(Locale.GetText(Constants.Locale.SID_YOU_WIN));
         }
 
     }
@@ -65,7 +65,7 @@ public class GameOverPresenter : IInitializable, IDisposable {
         OpenEndOfGame();
 
         if (m_hud != null) {
-            m_hud.gameOverPanel.SetResult(Constants.Locale.SID_YOU_LOSE);
+            m_hud.gameOverPanel.SetResult(Locale.GetText(Constants.Locale.SID_YOU_LOSE));
         }
 
 

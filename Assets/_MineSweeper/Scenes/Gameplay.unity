@@ -1417,6 +1417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0d3c7da512c244290754cfdbdb2928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Label: {fileID: 0}
+  IsCheckForNewline: 0
 --- !u!114 &821208716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,13 +1466,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.7
+  m_fontSize: 18.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2747,7 +2749,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2841,6 +2843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0d3c7da512c244290754cfdbdb2928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Label: {fileID: 0}
+  IsCheckForNewline: 0
 --- !u!114 &2024744922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,13 +2892,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.6
+  m_fontSize: 30.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

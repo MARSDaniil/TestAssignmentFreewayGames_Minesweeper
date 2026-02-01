@@ -1,0 +1,42 @@
+{
+    "SID_START_NEW_GAME": {
+        "EN": "NEW GAME",
+        "RU": "НОВАЯ ИГРА"
+    },
+    "SID_CONTINUE": {
+        "EN": "CONTINUE",
+        "RU": "ПРОДОЛЖИТЬ"
+    },
+    "SID_MINES": {
+        "EN": "MINES",
+        "RU": "МИНЫ"
+    },
+    "SID_SIZE": {
+        "EN": "SIZE",
+        "RU": "РАЗМЕР"
+    },
+    "SID_FLAGS_LEFT": {
+        "EN": "FLAGS",
+        "RU": "ФЛАГИ"
+    },
+    "SID_TIME": {
+        "EN": "TIME",
+        "RU": "ВРЕМЯ"
+    },
+    "SID_YOU_WIN": {
+        "EN": "YOU WIN!",
+        "RU": "ВЫ ПОБЕДИЛИ!"
+    },
+    "SID_YOU_LOSE": {
+        "EN": "YOU LOSE :(",
+        "RU": "ВЫ ПРОИГРАЛИ :("
+    },
+    "SID_RESTART": {
+        "EN": "RESTART",
+        "RU": "ЗАНОВО"
+    },
+    "SID_BACK_TO_MENU": {
+        "EN": "BACK TO MENU",
+        "RU": "НАЗАД В МЕНЮ"
+    }
+}

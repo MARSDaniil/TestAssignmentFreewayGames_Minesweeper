@@ -1,0 +1,45 @@
+{
+    "LanguageCode": "RU",
+    "Data": [
+        {
+            "SID": "SID_START_NEW_GAME",
+            "LString": "НОВАЯ ИГРА"
+        },
+        {
+            "SID": "SID_CONTINUE",
+            "LString": "ПРОДОЛЖИТЬ"
+        },
+        {
+            "SID": "SID_MINES",
+            "LString": "МИНЫ"
+        },
+        {
+            "SID": "SID_SIZE",
+            "LString": "РАЗМЕР"
+        },
+        {
+            "SID": "SID_FLAGS_LEFT",
+            "LString": "ФЛАГИ"
+        },
+        {
+            "SID": "SID_TIME",
+            "LString": "ВРЕМЯ"
+        },
+        {
+            "SID": "SID_YOU_WIN",
+            "LString": "ВЫ ПОБЕДИЛИ!"
+        },
+        {
+            "SID": "SID_YOU_LOSE",
+            "LString": "ВЫ ПРОИГРАЛИ :("
+        },
+        {
+            "SID": "SID_RESTART",
+            "LString": "ЗАНОВО"
+        },
+        {
+            "SID": "SID_BACK_TO_MENU",
+            "LString": "НАЗАД В МЕНЮ"
+        }
+    ]
+}
