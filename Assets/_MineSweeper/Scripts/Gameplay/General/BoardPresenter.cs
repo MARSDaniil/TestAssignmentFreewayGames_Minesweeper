@@ -38,8 +38,7 @@ public class BoardPresenter : IInitializable, IDisposable {
                 Vector2Int pos = new Vector2Int(x, y);
                 CellView cell = m_cellPool.Get(pos);
 
-                cell.e_onLeftClickEvent += m_boardService.OpenCell;
-                cell.e_onRightClickEvent += m_boardService.ToggleFlag;
+                cell.ResetVisual();
             }
         }
     }
