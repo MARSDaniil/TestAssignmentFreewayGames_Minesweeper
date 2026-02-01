@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using Zenject;
 public class CellView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     #region Fields
+
+    [Inject] private BoardConfig m_boardConfig;
 
     public UnityAction<Vector2Int, InputActionType> e_onInputEvent;
 
@@ -28,10 +31,14 @@ public class CellView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     }
 
 
+    public void SetColorToNumText(Color a_color) {
+        m_numberText.color = a_color;
+    }
+
     public void ApplyCellData(BoardCell a_cell) {
 
         m_numberText.gameObject.SetActive(false);
-        Debug.Log($"ApplyCellData opened={a_cell.IsOpened} mine={a_cell.IsMine} adj={a_cell.AdjacentMines}");
+        m_numberText.text = a_cell.AdjacentMines.ToString();
 
         if (a_cell.IsOpened) {
             if (a_cell.IsMine) {
@@ -42,10 +49,6 @@ public class CellView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
             m_spriteRender.sprite = m_openedStateSprite;
             if (a_cell.AdjacentMines > 0) {
-                m_numberText.text = a_cell.AdjacentMines.ToString();
-
-                //TODO get text color from config 
-
                 m_numberText.gameObject.SetActive(true);
             }
 

@@ -8,7 +8,7 @@ public class BoardPresenter : IInitializable, IDisposable {
     private readonly IBoardService m_boardService;
     private readonly CellViewPool m_cellPool;
     private readonly BoardView m_boardView;
-
+    private BoardConfig m_boardConfig;
     #endregion
 
     #region Public
@@ -16,10 +16,12 @@ public class BoardPresenter : IInitializable, IDisposable {
     public BoardPresenter(
         IBoardService a_boardService,
         CellViewPool a_cellPool,
-        BoardView a_boardView) {
+        BoardView a_boardView,
+        BoardConfig boardConfig) {
         m_boardService = a_boardService;
         m_cellPool = a_cellPool;
         m_boardView = a_boardView;
+        m_boardConfig = boardConfig;
     }
 
     public void Initialize() {
@@ -59,6 +61,7 @@ public class BoardPresenter : IInitializable, IDisposable {
 
                 BoardCell data = m_boardService.GetCell(pos);
                 cell.ApplyCellData(data);
+                cell.SetColorToNumText(m_boardConfig.GetdjacentsColor(data.AdjacentMines));
             }
         }
     }
@@ -76,6 +79,7 @@ public class BoardPresenter : IInitializable, IDisposable {
 
         BoardCell data = m_boardService.GetCell(a_position);
         view.ApplyCellData(data);
+        view.SetColorToNumText(m_boardConfig.GetdjacentsColor(data.AdjacentMines));
     }
 
     #endregion
