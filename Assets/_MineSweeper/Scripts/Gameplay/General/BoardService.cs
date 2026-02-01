@@ -8,7 +8,10 @@ public class BoardService : IBoardService {
     public event Action<Vector2Int> e_onCellChangedEvent;
     public event Action e_onGameLostEvent;
     public event Action e_onGameWinEvent;
+    public event Action e_onFirstCellOpenedEvent;
+    public event Action<int> e_onFlagsChangedEvent;
 
+    private int m_flagsPlaced;
     public int SizeX {
         get {
             return m_sizeX;
@@ -19,6 +22,21 @@ public class BoardService : IBoardService {
             return m_sizeY;
         }
     }
+        
+    private bool m_firstActionDone;
+
+
+    public int MinesCount {
+        get {
+            return m_minesCount;
+        }
+    }
+    public int FlagsPlaced {
+        get {
+            return m_flagsPlaced;
+        }
+    }
+
 
     private readonly BoardConfig m_config;
 
@@ -67,6 +85,9 @@ public class BoardService : IBoardService {
                 };
             }
         }
+        m_firstActionDone = false;
+        m_flagsPlaced = 0;
+        e_onFlagsChangedEvent?.Invoke(m_flagsPlaced);
     }
 
     public BoardCell GetCell(Vector2Int a_position) {
@@ -95,6 +116,10 @@ public class BoardService : IBoardService {
         cell.IsFlagged = !cell.IsFlagged;
         m_cells[a_position.x, a_position.y] = cell;
 
+        int delta = cell.IsFlagged ? 1 : -1;
+        m_flagsPlaced += delta;
+
+        e_onFlagsChangedEvent?.Invoke(m_flagsPlaced);
         RaiseCellChanged(a_position);
     }
 
@@ -111,6 +136,11 @@ public class BoardService : IBoardService {
 
         if (cell.IsOpened || cell.IsFlagged) {
             return;
+        }
+
+        if (!m_firstActionDone) {
+            m_firstActionDone = true;
+            e_onFirstCellOpenedEvent?.Invoke();
         }
 
         if (!m_isMinesPlaced) {

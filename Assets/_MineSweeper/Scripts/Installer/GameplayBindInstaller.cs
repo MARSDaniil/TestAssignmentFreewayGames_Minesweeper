@@ -31,7 +31,8 @@ public class GameplayBindInstaller : MonoInstaller {
         Container.BindInterfacesTo<GameInputRouter>().AsSingle();
 
         Container.Bind<GameInputController>().AsSingle();
-        Container.BindInterfacesTo<GameFlowController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<HudPresenter>().AsSingle();
+        Container.BindInterfacesAndSelfTo<GameFlowController>().AsSingle();
 
         Container.Bind<BoardCameraController>().AsSingle().WithArguments(m_mainCamera, m_boardView, m_cameraPadding);
     }

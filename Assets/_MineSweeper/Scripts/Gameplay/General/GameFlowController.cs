@@ -44,6 +44,10 @@ public class GameFlowController : IInitializable, IDisposable {
         m_boardService.e_onGameWinEvent -= OnGameWin;
     }
 
+    public void OnRestartPressed() {
+        StartNewGame();
+    }
+
     #endregion
 
 
@@ -55,9 +59,7 @@ public class GameFlowController : IInitializable, IDisposable {
         m_boardCameraController.FitToBoard();
     }
 
-    private void OnRestartPressed() {
-        StartNewGame();
-    }
+ 
 
 
     private void OnGameLost() {
