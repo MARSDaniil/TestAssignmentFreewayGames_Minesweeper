@@ -165,3 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameInstance: {fileID: 9209966910895601406}
+  m_boardConfig: {fileID: 11400000, guid: 376ed9b8feb7bdd45adb797b5dfba5cd, type: 2}

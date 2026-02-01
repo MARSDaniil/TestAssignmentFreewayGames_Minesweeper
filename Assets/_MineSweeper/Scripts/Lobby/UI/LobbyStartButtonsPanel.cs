@@ -8,11 +8,22 @@ public class LobbyStartButtonsPanel : MonoBehaviour {
     #region Fields
 
     public UnityAction e_onPlayPressedEvent;
-    public UnityAction e_onContinuePressedEvent;
 
     [SerializeField] private Button m_playButton;
-    [SerializeField] private Button m_continueButton;
+    [SerializeField] private SelectButton m_bombCount;
+    [SerializeField] private SelectButton m_sizeCount;
 
+    public SelectButton bombCount {
+        get {
+            return m_bombCount;
+        }
+    }
+
+    public SelectButton sizeCount {
+        get {
+            return m_sizeCount;
+        }
+    }
     #endregion
 
     #region UnityEvents
@@ -22,29 +33,13 @@ public class LobbyStartButtonsPanel : MonoBehaviour {
             m_playButton.onClick.AddListener(OnPlayPressed);
         }
 
-        if (m_continueButton != null) {
-            m_continueButton.onClick.AddListener(OnContinuePressed);
-        }
     }
 
     private void OnDestroy() {
         if (m_playButton != null) {
             m_playButton.onClick.RemoveListener(OnPlayPressed);
         }
-
-        if (m_continueButton != null) {
-            m_continueButton.onClick.RemoveListener(OnContinuePressed);
-        }
-    }
-
-    #endregion
-
-    #region Public
-
-    public void SetContinueAvailable(bool a_value) {
-        if (m_continueButton != null) {
-            m_continueButton.interactable = a_value;
-        }
+     
     }
 
     #endregion
@@ -53,10 +48,6 @@ public class LobbyStartButtonsPanel : MonoBehaviour {
 
     private void OnPlayPressed() {
         e_onPlayPressedEvent?.Invoke();
-    }
-
-    private void OnContinuePressed() {
-        e_onContinuePressedEvent?.Invoke();
     }
 
     #endregion

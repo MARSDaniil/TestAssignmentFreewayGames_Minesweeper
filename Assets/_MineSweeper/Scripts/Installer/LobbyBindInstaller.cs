@@ -7,5 +7,6 @@ public class LobbyBindInstaller : MonoInstaller {
     public override void InstallBindings() {
         Container.Bind<LobbyUIController>().FromInstance(m_lobbyUIController).AsSingle();
         Container.BindInterfacesTo<LobbyController>().AsSingle();
+        Container.BindInterfacesTo<LobbySettingsPresenter>().AsSingle();
     }
 }

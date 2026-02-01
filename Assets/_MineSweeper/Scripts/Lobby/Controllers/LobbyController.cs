@@ -18,17 +18,11 @@ public class LobbyController : IInitializable, IDisposable {
     }
 
     public void Initialize() {
-        //TODO
-        bool hasSave = false;
-        m_view.lobbyStartButtonsPanel.SetContinueAvailable(hasSave);
-
         m_view.lobbyStartButtonsPanel.e_onPlayPressedEvent += OnPlayPressed;
-        m_view.lobbyStartButtonsPanel.e_onContinuePressedEvent += OnContinuePressed;
     }
 
     public void Dispose() {
         m_view.lobbyStartButtonsPanel.e_onPlayPressedEvent -= OnPlayPressed;
-        m_view.lobbyStartButtonsPanel.e_onContinuePressedEvent -= OnContinuePressed;
     }
 
     #endregion
@@ -37,11 +31,6 @@ public class LobbyController : IInitializable, IDisposable {
 
     private void OnPlayPressed() {
         m_sceneLoader.LoadSingleAsync(Constants.Scene.Gameplay);
-    }
-
-    private void OnContinuePressed() {
-        //TODO
-        return;
     }
 
     #endregion
