@@ -4,6 +4,11 @@ public static class Constants {
         public const string Gameplay = "Gameplay";
     }
 
+    public static class Locale {
+        public const string SID_YOU_WIN = "SID_YOU_WIN";
+        public const string SID_YOU_LOSE = "SID_YOU_LOSE";
+    }
+
     public static class SaveKeys {
         public const string USER_KEY = "MB280XGHJ";
         public const string LANG = "LANG";

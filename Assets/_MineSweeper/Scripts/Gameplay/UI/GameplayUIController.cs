@@ -12,7 +12,13 @@ public class GameplayUIController : MonoBehaviour {
     }
     [SerializeField] private TextCounter m_flagCounter;
     [SerializeField] private TextCounter m_timer;
+    [SerializeField] private GameOverPanel m_gameOverPanel;
 
+    public GameOverPanel gameOverPanel {
+        get {
+            return m_gameOverPanel;
+        }
+    }
     #endregion
 
     #region Public
@@ -39,7 +45,6 @@ public class GameplayUIController : MonoBehaviour {
         if (m_stateOfGames == null) {
             return;
         }
-        //TODO
         m_stateOfGames.SetText("😊");
     }
 
@@ -47,7 +52,6 @@ public class GameplayUIController : MonoBehaviour {
         if (m_stateOfGames == null) {
             return;
         }
-        //TODO
         m_stateOfGames.SetText("😍");
     }
 
@@ -55,7 +59,6 @@ public class GameplayUIController : MonoBehaviour {
         if (m_stateOfGames == null) {
             return;
         }
-        //TODO
         m_stateOfGames.SetText("☹");
     }
 
