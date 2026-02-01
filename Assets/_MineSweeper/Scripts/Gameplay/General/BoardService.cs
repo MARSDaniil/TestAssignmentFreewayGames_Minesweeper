@@ -326,7 +326,6 @@ public class BoardService : IBoardService {
     }
 
     private void RaiseCellChanged(Vector2Int a_position) {
-        Debug.Log($"RaiseCellChanged {a_position}");
         e_onCellChangedEvent?.Invoke(a_position);
     }
 

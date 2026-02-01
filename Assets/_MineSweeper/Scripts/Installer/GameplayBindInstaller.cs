@@ -8,6 +8,9 @@ public class GameplayBindInstaller : MonoInstaller {
     [SerializeField] private BoardConfig m_boardConfig;
     [SerializeField] private GameplayUIController m_gameplayUIController;
 
+    [SerializeField] private Camera m_mainCamera;
+    [SerializeField] private float m_cameraPadding = 0.5f;
+
     #endregion
 
     #region Public
@@ -29,6 +32,8 @@ public class GameplayBindInstaller : MonoInstaller {
 
         Container.Bind<GameInputController>().AsSingle();
         Container.BindInterfacesTo<GameFlowController>().AsSingle();
+
+        Container.Bind<BoardCameraController>().AsSingle().WithArguments(m_mainCamera, m_boardView, m_cameraPadding);
     }
 
     #endregion

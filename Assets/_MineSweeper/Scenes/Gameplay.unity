@@ -509,6 +509,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 831258209}
     - target: {fileID: 2737280299640760101, guid: 63afb9cd49fe9be46893b43d5962960b, type: 3}
+      propertyPath: m_mainCamera
+      value: 
+      objectReference: {fileID: 622282167}
+    - target: {fileID: 2737280299640760101, guid: 63afb9cd49fe9be46893b43d5962960b, type: 3}
       propertyPath: m_boardConfig
       value: 
       objectReference: {fileID: 11400000, guid: 376ed9b8feb7bdd45adb797b5dfba5cd, type: 2}
