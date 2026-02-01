@@ -65,8 +65,6 @@ public class BoardService : IBoardService {
                     IsFlagged = false,
                     AdjacentMines = 0
                 };
-
-                RaiseCellChanged(new Vector2Int(x, y));
             }
         }
     }
@@ -89,6 +87,7 @@ public class BoardService : IBoardService {
         }
 
         BoardCell cell = m_cells[a_position.x, a_position.y];
+
         if (cell.IsOpened) {
             return;
         }
@@ -129,7 +128,7 @@ public class BoardService : IBoardService {
             return;
         }
 
-        FloodOpen(a_position);
+        FloodOpenFrom(a_position);
 
         if (m_openedSafeCellsCount >= m_totalSafeCellsCount) {
             m_isGameEnded = true;
@@ -141,17 +140,19 @@ public class BoardService : IBoardService {
 
     #region Private
 
-    private void FloodOpen(Vector2Int a_start) {
+    private void FloodOpenFrom(Vector2Int a_start) {
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
         queue.Enqueue(a_start);
 
         while (queue.Count > 0) {
             Vector2Int pos = queue.Dequeue();
+
             if (!IsInBounds(pos)) {
                 continue;
             }
 
             BoardCell cell = m_cells[pos.x, pos.y];
+
             if (cell.IsOpened || cell.IsFlagged) {
                 continue;
             }
@@ -171,24 +172,35 @@ public class BoardService : IBoardService {
             }
 
             foreach (Vector2Int n in GetNeighbors8(pos)) {
-                if (IsInBounds(n)) {
-                    BoardCell nextCell = m_cells[n.x, n.y];
-                    if (!nextCell.IsOpened && !nextCell.IsFlagged && !nextCell.IsMine) {
-                        queue.Enqueue(n);
-                    }
+                if (!IsInBounds(n)) {
+                    continue;
                 }
+
+                BoardCell nextCell = m_cells[n.x, n.y];
+
+                if (nextCell.IsOpened || nextCell.IsFlagged) {
+                    continue;
+                }
+
+                if (nextCell.IsMine) {
+                    continue;
+                }
+
+                queue.Enqueue(n);
             }
         }
     }
 
     private void PlaceMines(Vector2Int a_firstClick) {
+        HashSet<Vector2Int> forbidden = BuildForbiddenPositions(a_firstClick);
+
         List<Vector2Int> candidates = new List<Vector2Int>(m_sizeX * m_sizeY);
 
         for (int x = 0; x < m_sizeX; x++) {
             for (int y = 0; y < m_sizeY; y++) {
                 Vector2Int pos = new Vector2Int(x, y);
 
-                if (pos == a_firstClick) {
+                if (forbidden.Contains(pos)) {
                     continue;
                 }
 
@@ -203,31 +215,47 @@ public class BoardService : IBoardService {
             candidates[j] = tmp;
         }
 
-        int placed = 0;
-        int index = 0;
+        int minesToPlace = Mathf.Min(m_minesCount, candidates.Count);
 
-        while (placed < m_minesCount && index < candidates.Count) {
-            Vector2Int pos = candidates[index];
-            index++;
+        for (int i = 0; i < minesToPlace; i++) {
+            Vector2Int pos = candidates[i];
 
             BoardCell cell = m_cells[pos.x, pos.y];
-            if (cell.IsMine) {
-                continue;
-            }
-
             cell.IsMine = true;
             m_cells[pos.x, pos.y] = cell;
-
-            placed++;
         }
+
+        m_totalSafeCellsCount = (m_sizeX * m_sizeY) - minesToPlace;
+    }
+
+    private HashSet<Vector2Int> BuildForbiddenPositions(Vector2Int a_center) {
+        HashSet<Vector2Int> forbidden = new HashSet<Vector2Int>();
+
+        int r = 0;
+
+        for (int dx = -r; dx <= r; dx++) {
+            for (int dy = -r; dy <= r; dy++) {
+                Vector2Int pos = new Vector2Int(a_center.x + dx, a_center.y + dy);
+
+                if (IsInBounds(pos)) {
+                    forbidden.Add(pos);
+                }
+            }
+        }
+
+        if (!forbidden.Contains(a_center)) {
+            forbidden.Add(a_center);
+        }
+
+        return forbidden;
     }
 
     private void ComputeAdjacentNumbers() {
         for (int x = 0; x < m_sizeX; x++) {
             for (int y = 0; y < m_sizeY; y++) {
                 Vector2Int pos = new Vector2Int(x, y);
-
                 BoardCell cell = m_cells[x, y];
+
                 if (cell.IsMine) {
                     cell.AdjacentMines = 0;
                     m_cells[x, y] = cell;
@@ -256,6 +284,7 @@ public class BoardService : IBoardService {
         for (int x = 0; x < m_sizeX; x++) {
             for (int y = 0; y < m_sizeY; y++) {
                 BoardCell cell = m_cells[x, y];
+
                 if (!cell.IsMine) {
                     continue;
                 }
@@ -297,6 +326,7 @@ public class BoardService : IBoardService {
     }
 
     private void RaiseCellChanged(Vector2Int a_position) {
+        Debug.Log($"RaiseCellChanged {a_position}");
         e_onCellChangedEvent?.Invoke(a_position);
     }
 

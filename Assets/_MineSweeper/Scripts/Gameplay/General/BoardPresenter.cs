@@ -23,6 +23,7 @@ public class BoardPresenter : IInitializable, IDisposable {
     }
 
     public void Initialize() {
+        //Debug.LogError("BoardPresenter.Initialize");
         m_boardService.e_onCellChangedEvent += OnCellChanged;
     }
 
@@ -35,11 +36,10 @@ public class BoardPresenter : IInitializable, IDisposable {
 
         float step = m_boardView.CellSize + m_boardView.Spacing;
 
-        for (int x = 0; x < m_boardView.SizeX; x++) {
-            for (int y = 0; y < m_boardView.SizeY; y++) {
+        for (int x = 0; x < m_boardService.SizeX; x++) {
+            for (int y = 0; y < m_boardService.SizeY; y++) {
                 Vector2Int pos = new Vector2Int(x, y);
                 CellView cell = m_cellPool.Get(pos);
-                cell.ResetVisual();
 
                 Vector3 worldPos = new Vector3(
                     m_boardView.Origin.x + (x * step),

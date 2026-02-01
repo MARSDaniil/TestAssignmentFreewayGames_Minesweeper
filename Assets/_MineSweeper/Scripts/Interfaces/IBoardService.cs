@@ -4,6 +4,13 @@ using UnityEngine;
 public interface IBoardService {
     #region Public
 
+    int SizeX {
+        get;
+    }
+    int SizeY {
+        get;
+    }
+
     event Action<Vector2Int> e_onCellChangedEvent;
     event Action e_onGameLostEvent;
     event Action e_onGameWinEvent;

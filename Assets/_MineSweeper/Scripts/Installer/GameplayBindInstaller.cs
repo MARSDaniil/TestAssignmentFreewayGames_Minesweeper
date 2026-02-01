@@ -24,7 +24,7 @@ public class GameplayBindInstaller : MonoInstaller {
 
         Container.BindInterfacesTo<BoardService>().AsSingle();
 
-        Container.Bind<BoardPresenter>().AsSingle();
+        Container.BindInterfacesAndSelfTo<BoardPresenter>().AsSingle();
         Container.BindInterfacesTo<GameInputRouter>().AsSingle();
 
         Container.Bind<GameInputController>().AsSingle();

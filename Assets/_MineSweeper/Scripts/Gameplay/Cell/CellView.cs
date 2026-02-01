@@ -27,12 +27,11 @@ public class CellView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
         m_position = new Vector2Int(a_x, a_y);
     }
 
-    public void ResetVisual() {
-        m_spriteRender.sprite = m_closedStateSprite;
-        m_numberText.gameObject.SetActive(false);
-    }
 
     public void ApplyCellData(BoardCell a_cell) {
+
+        m_numberText.gameObject.SetActive(false);
+        Debug.Log($"ApplyCellData opened={a_cell.IsOpened} mine={a_cell.IsMine} adj={a_cell.AdjacentMines}");
 
         if (a_cell.IsOpened) {
             if (a_cell.IsMine) {
