@@ -21,6 +21,7 @@ public class CellView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     private Vector2Int m_position;
     private float m_pressTime;
     private bool m_pressed;
+    private float m_longPressTime = 1f;
 
     #endregion
 
