@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc0ff5a6242fe64b8cf9c1f985b5183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_lobbyUIController: {fileID: 0}
 --- !u!1001 &5293359722786782210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,8 +95,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4727886925938105963, guid: 06b7117c632316040a1c4858da90a485, type: 3}
       propertyPath: m_Name
-      value: SceneContext Variant
+      value: LobbySceneContext
       objectReference: {fileID: 0}
+    - target: {fileID: 8713213252622345849, guid: 06b7117c632316040a1c4858da90a485, type: 3}
+      propertyPath: _monoInstallers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713213252622345849, guid: 06b7117c632316040a1c4858da90a485, type: 3}
+      propertyPath: _monoInstallers.Array.data[0]
+      value: 
+      objectReference: {fileID: 252201734687081507}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

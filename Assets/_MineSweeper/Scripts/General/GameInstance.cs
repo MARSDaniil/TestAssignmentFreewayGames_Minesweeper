@@ -13,7 +13,7 @@ public class GameInstance : MonoBehaviour {
     #region UnityEvents
 
     private void Start() {
-        m_sceneLoader.LoadSingleAsync(ConstantStrings.Scene.Lobby);
+        m_sceneLoader.LoadSingleAsync(Constants.Scene.Lobby);
     }
 
     #endregion
