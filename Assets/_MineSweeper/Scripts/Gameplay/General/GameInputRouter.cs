@@ -1,6 +1,6 @@
-using Zenject;
-using UnityEngine;
 using System;
+using UnityEngine;
+using Zenject;
 
 public class GameInputRouter : IInitializable, IDisposable {
     #region Fields

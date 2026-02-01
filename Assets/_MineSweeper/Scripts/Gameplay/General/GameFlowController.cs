@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Zenject;
 
 public class GameFlowController : IInitializable, IDisposable {
@@ -27,11 +28,12 @@ public class GameFlowController : IInitializable, IDisposable {
     }
 
     public void Initialize() {
-        StartNewGame();
-
+        Debug.Log("GameFlowController.Initialize");
         m_inputController.e_onRestartPressedEvent += OnRestartPressed;
         m_boardService.e_onGameLostEvent += OnGameLost;
         m_boardService.e_onGameWinEvent += OnGameWin;
+
+        StartNewGame();
     }
 
     public void Dispose() {
@@ -42,19 +44,18 @@ public class GameFlowController : IInitializable, IDisposable {
 
     #endregion
 
+
     #region Private
 
     private void StartNewGame() {
-        m_gameState = GameState.Playing;
-
         m_boardService.CreateNewBoard();
         m_boardPresenter.BuildBoard();
-        m_hudController.HideGameOver();
     }
 
     private void OnRestartPressed() {
         StartNewGame();
     }
+
 
     private void OnGameLost() {
         m_gameState = GameState.Lose;

@@ -5,23 +5,30 @@ public class GameplayBindInstaller : MonoInstaller {
     #region Fields
 
     [SerializeField] private BoardView m_boardView;
-    [SerializeField] private GameplayUIController m_gameplayUIController;
     [SerializeField] private BoardConfig m_boardConfig;
+    [SerializeField] private GameplayUIController m_gameplayUIController;
+
     #endregion
 
     #region Public
 
     public override void InstallBindings() {
         Container.Bind<BoardConfig>().FromInstance(m_boardConfig).AsSingle();
-        Container.BindInterfacesTo<BoardService>().AsSingle();
-        Container.BindInterfacesTo<GameFlowController>().AsSingle();
-        Container.BindInterfacesTo<BoardPresenter>().AsSingle();
-        Container.BindInterfacesTo<GameInputController>().AsSingle();
 
         Container.Bind<BoardView>().FromInstance(m_boardView).AsSingle();
         Container.Bind<GameplayUIController>().FromInstance(m_gameplayUIController).AsSingle();
 
-        Container.Bind<CellViewPool>().AsSingle();
+        Container.Bind<CellViewPool>()
+            .AsSingle()
+            .WithArguments(m_boardView.CellPrefab, m_boardView.CellsRoot);
+
+        Container.BindInterfacesTo<BoardService>().AsSingle();
+
+        Container.Bind<BoardPresenter>().AsSingle();
+        Container.BindInterfacesTo<GameInputRouter>().AsSingle();
+
+        Container.Bind<GameInputController>().AsSingle();
+        Container.BindInterfacesTo<GameFlowController>().AsSingle();
     }
 
     #endregion

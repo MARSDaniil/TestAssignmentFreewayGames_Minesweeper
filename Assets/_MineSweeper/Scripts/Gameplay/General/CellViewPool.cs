@@ -8,8 +8,7 @@ public class CellViewPool {
     public event Action<Vector2Int, InputActionType> e_onCellInputEvent;
 
     private readonly Stack<CellView> m_pool = new Stack<CellView>();
-    private readonly Dictionary<Vector2Int, CellView> m_activeCells =
-        new Dictionary<Vector2Int, CellView>();
+    private readonly Dictionary<Vector2Int, CellView> m_activeCells = new Dictionary<Vector2Int, CellView>();
 
     private readonly CellView m_prefab;
     private readonly Transform m_parent;
@@ -27,8 +26,6 @@ public class CellViewPool {
         CellView cell = GetInternal();
 
         cell.SetPosition(a_position.x, a_position.y);
-        cell.ResetVisual();
-
         cell.e_onInputEvent += OnCellInput;
 
         m_activeCells[a_position] = cell;

@@ -33,12 +33,25 @@ public class BoardPresenter : IInitializable, IDisposable {
     public void BuildBoard() {
         m_cellPool.ReleaseAll();
 
+        float step = m_boardView.CellSize + m_boardView.Spacing;
+
         for (int x = 0; x < m_boardView.SizeX; x++) {
             for (int y = 0; y < m_boardView.SizeY; y++) {
                 Vector2Int pos = new Vector2Int(x, y);
                 CellView cell = m_cellPool.Get(pos);
-
                 cell.ResetVisual();
+
+                Vector3 worldPos = new Vector3(
+                    m_boardView.Origin.x + (x * step),
+                    m_boardView.Origin.y + (y * step),
+                    0f
+                );
+
+                cell.transform.position = worldPos;
+                cell.transform.localScale = Vector3.one * m_boardView.CellSize;
+
+                BoardCell data = m_boardService.GetCell(pos);
+                cell.ApplyCellData(data);
             }
         }
     }
@@ -48,9 +61,13 @@ public class BoardPresenter : IInitializable, IDisposable {
     #region Private
 
     private void OnCellChanged(Vector2Int a_position) {
-        BoardCell cell = m_boardService.GetCell(a_position);
         CellView view = m_cellPool.GetByPosition(a_position);
-        view.ApplyCellData(cell);
+        if (view == null) {
+            return;
+        }
+
+        BoardCell data = m_boardService.GetCell(a_position);
+        view.ApplyCellData(data);
     }
 
     #endregion
